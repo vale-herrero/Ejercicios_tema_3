@@ -10,5 +10,5 @@ def move(discos, tubo_inicial=1, auxiliar=2, tubo_final=3):
 
 if __name__ == '__main__':
 
-	n = 64
+	n = 74
 	move(n)
