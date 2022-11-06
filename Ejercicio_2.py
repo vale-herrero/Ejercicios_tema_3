@@ -11,18 +11,22 @@ def det_iterativa(matriz):
         sumas=matriz[i][0]*matriz[i+1][1]*matriz[i+2][2]
         restas=matriz[i][2]*matriz[i+1][1]*matriz[i+2][0]
         determinante= determinante + (sumas-restas)
-    print(determinante)
+    print("determinante iterativa: ", determinante)
 
 det_iterativa(matriz)
 
-def det_recursiva(matriz):
-    matriz=matriz*2
-    matriz.pop(-1)
-    i=0
-    sumas=matriz[i][0]*matriz[i+1][1]*matriz[i+2][2]
-    det_iterativa(sumas)
-    restas=matriz[i][2]*matriz[i+1][1]*matriz[i+2][0]
-    i+=1
-    det_recursiva(restas)
-    print(det_recursiva(sumas)-det_recursiva(restas))
+def det_recursiva(matrix, nivel=0, det=0):
+    if nivel < 3:
+        det += matrix[0][0] * matrix[1][1] * matrix[2][2]
+    elif nivel >= 3 and nivel < 6:
+        det += -matrix[0][2] * matrix[1][1] * matrix[2][0]
+    else:
+        print("El determinante recursiva:", det)
+        return None
+    matrix = [ matrix[0][1:3] + [matrix[0][0]],
+               matrix[1][1:3] + [matrix[1][0]],
+               matrix[2][1:3] + [matrix[2][0]] ]
+
+    det_recursiva(matrix, nivel+1, det)    
+
 det_recursiva(matriz)
